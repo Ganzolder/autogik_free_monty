@@ -10,6 +10,7 @@ def get_base_parameters():
     tire_size_width = []
     tire_size_profile = []
     tire_size_diameter=[]
+    tire_brand = []
 
     for row in wb_base_list_sheet.iter_rows(min_row=2, min_col=1, max_col=1):
         for cell in row:
@@ -38,6 +39,15 @@ def get_base_parameters():
             else:
                 break
 
-    return managers, tire_size_width, tire_size_profile, tire_size_diameter
+    wb_base_list_sheet = wb_base_list['model_conditions']
 
+    for row in wb_base_list_sheet.iter_rows(min_row=2, min_col=1, max_col=1):
+        for cell in row:
+            if cell.value != None:
+                tire_brand.append(cell.value)
+            else:
+                break
 
+    return managers, tire_size_width, tire_size_profile, tire_size_diameter, tire_brand
+
+get_base_parameters()
