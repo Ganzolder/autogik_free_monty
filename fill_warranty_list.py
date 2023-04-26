@@ -4,7 +4,6 @@ from datetime import datetime
 date, customer_name, customer_number, tire_brand, tire_model, tire_size, car_model, license_plate, check_number, manager = \
     '01/03/1986', 'Ленин ВИ', '89539106192', 'Pirelli', 'P1 Verde', '195/65 R15', 'Nissan Сube', 'К602ТМ42', '65496864565', 'Волобуев'
 
-
 def fill_warranty_list(date, customer_name, customer_number, tire_brand, tire_model,
                        tire_size, car_model, license_plate, check_number, manager):
     # открываем список бшм и делаем запись в последнюю пустую строку
