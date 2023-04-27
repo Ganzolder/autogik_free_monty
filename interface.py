@@ -7,19 +7,21 @@ import get_base_parameters
 
 base_parameters = list(get_base_parameters.get_base_parameters())
 def interface():
+
+    sg.theme('Dark black1')
     layout = [
-        [sg.Text('Дата продажи', size=(10, 1)), sg.InputText(size=(40, 1), key='date')],
-        [sg.Text('ФИО клиента', size=(10, 1)), sg.InputText(size=(40, 1), key='cutomer_name')],
-        [sg.Text('Тел. клиента', size=(10, 1)), sg.InputText(size=(40, 1), key='customer_number')],
-        [sg.Text('Ширина', size=(10, 1)), sg.Combo(base_parameters[1], size=(5, 10), key='tire_size_width'),
+        [sg.Text('Дата продажи', size=(12, 1)), sg.InputText(size=(40, 1), key='date')],
+        [sg.Text('ФИО клиента', size=(12, 1)), sg.InputText(size=(40, 1), key='cutomer_name')],
+        [sg.Text('Тел. клиента', size=(12, 1)), sg.InputText(size=(40, 1), key='customer_number')],
+        [sg.Text('Ширина', size=(12, 1)), sg.Combo(base_parameters[1], size=(5, 10), key='tire_size_width'),
         sg.Text('Проф.', size=(5, 1)), sg.Combo(base_parameters[2], size=(5, 10), key='tire_size_profile'),
         sg.Text('Диам.', size=(5, 1)), sg.Combo(base_parameters[3], size=(5, 10), key='tire_size_diameter')],
-        [sg.Text('Бренд', size=(10, 1)), sg.Combo(['pirelli', 'nokian', 'cordiant'], size=(13, 10), key='tire_brand'),
-        sg.Text('Модель', size=(5, 1)), sg.Combo(['pirelli', 'nokian', 'cordiant'], size=(13, 10), key='tire_model')],
-        [sg.Text('Модель авто', size=(10, 1)), sg.InputText(size=(40, 10), key='car_model')],
-        [sg.Text('Номер авто', size=(10, 1)), sg.InputText(size=(40, 10), key='license_plate')],
-        [sg.Text('Номер авто', size=(10, 1)), sg.InputText(size=(40, 10), key='check_number')],
-        [sg.Text('Менеджер', size=(10, 1)), sg.Combo(base_parameters[0], size=(38, 12), key='manager')],
+        [sg.Text('Бренд', size=(12, 1)), sg.Combo(base_parameters[4], size=(13, 10), enable_events=True, key='tire_brand'),
+        sg.Text('Модель', size=(6, 1)), sg.Combo(['pirelli', 'nokian', 'cordiant'], size=(12, 10), key='tire_model')],
+        [sg.Text('Модель авто', size=(12, 1)), sg.InputText(size=(40, 10), key='car_model')],
+        [sg.Text('Номер авто', size=(12, 1)), sg.InputText(size=(40, 10), key='license_plate')],
+        [sg.Text('Номер чека', size=(12, 1)), sg.InputText(size=(40, 10), key='check_number')],
+        [sg.Text('Менеджер', size=(12, 1)), sg.Combo(base_parameters[0], size=(38, 12), key='manager')],
 
         [sg.Submit('Зарегистрировать'), sg.Cancel('Отмена')]
     ]
