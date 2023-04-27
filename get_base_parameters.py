@@ -71,4 +71,3 @@ def get_base_parameters():
 
 
     return managers, tire_size_width, tire_size_profile, tire_size_diameter, tire_brand, brands_dict
-
