@@ -9,8 +9,9 @@ def get_base_parameters():
     managers = []
     tire_size_width = []
     tire_size_profile = []
-    tire_size_diameter=[]
+    tire_size_diameter = []
     tire_brand = []
+    tire_diameter_conditions = []
 
     for row in wb_base_list_sheet.iter_rows(min_row=2, min_col=1, max_col=1):
         for cell in row:
@@ -59,7 +60,7 @@ def get_base_parameters():
         for cell in row:
             if step == 0:
                 brand_name = cell.offset(column=-1).value
-                brands_dict[cell.offset(column=-1).value] = brand_name
+                brands_dict[cell.offset(column=-1).value] = []
                 step += 1
             if cell.value != None:
                 models.append(cell.value)
@@ -67,7 +68,30 @@ def get_base_parameters():
                 break
         brands_dict[brand_name] = models
         models = []
+    '''
+    tire_diameter_conditions = {}
+    tire_sizes = []
 
+    wb_base_list_sheet = wb_base_list['diameter_conditions']
+
+    for row in wb_base_list_sheet.iter_rows(min_row=2, min_col=2):
+        step = 0
+        for cell in row:
+            if step == 0:
+                brand_name = cell.offset(column=-1).value
+                brands_dict[cell.offset(column=-1).value] = []
+                step += 1
+            if cell.value != None:
+                tire_sizes.append(cell.value)
+            else:
+                break
+        tire_diameter_conditions[brand_name] = tire_sizes
+        tire_sizes = []
+'''
 
 
     return managers, tire_size_width, tire_size_profile, tire_size_diameter, tire_brand, brands_dict
+
+#tire_diameter_conditions
+
+get_base_parameters()
