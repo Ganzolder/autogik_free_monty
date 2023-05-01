@@ -66,7 +66,8 @@ def interface():
                 rand_first = random.randint(100, 999)
                 managers_key = base_parameters[0].index(values['manager']) + 1
                 rand_last = random.randint(10, 99)
-                sg.popup_scrolled(f'БШМ КОД - {brand_name_cropped}{rand_first}{managers_key}{rand_last}', title='Скопируй и вставь в комментарий к заказу в 1с',
+                sg.popup_scrolled(f'БШМ КОД - {brand_name_cropped}{rand_first}{managers_key}{rand_last}',
+                                  title='Скопируй и вставь в комментарий к заказу в 1с',
                                   font=("Verdana Bold", 24), text_color='red', size=(22, 2))
                 return values
 
