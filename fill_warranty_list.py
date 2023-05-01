@@ -2,7 +2,7 @@ from openpyxl import load_workbook
 from datetime import datetime
 from interface import interface
 
-# {'date': '02/05/2023', 'cutomer_name': 'Волобуев Алексей', 'customer_number': '89539106192',
+# {'date': '02/05/2023', 'customer_name': 'Волобуев Алексей', 'customer_number': '89539106192',
 # 'tire_size_width': 215, 'tire_size_profile': 55, 'tire_size_diameter': 'R16',
 # 'tire_brand': 'Tunga', 'tire_model': 'Zodiak 2', 'car_model': 'nissan cube', 'license_plate': 'k602tm',
 # 'check_number': '123123', 'manager': 'Шараев'}
