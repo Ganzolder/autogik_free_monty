@@ -1,11 +1,10 @@
 from openpyxl import load_workbook
 
-#  date, customer_name, customer_number, tire_brand, brands_dict,
-#  tire_size_width, tire_size_profile, tire_size_diameter, car_model, license_plate, check_number, manager
 def get_base_parameters():
+
     wb_base_list = load_workbook(filename='base/base.xlsx')
     wb_base_list_sheet = wb_base_list['managers']
-    # print(wb_base_list.sheetnames)
+
     managers = []
     tire_size_width = []
     tire_size_profile = []
@@ -68,30 +67,47 @@ def get_base_parameters():
                 break
         brands_dict[brand_name] = models
         models = []
-    '''
-    tire_diameter_conditions = {}
-    tire_sizes = []
 
-    wb_base_list_sheet = wb_base_list['diameter_conditions']
+    wb_base_list_sheet = wb_base_list['compensation_conditions']
+
+    compensations_dict = {}
+    compensation_sum = {}
+
+    for row in wb_base_list_sheet.iter_rows(min_row=2, min_col=2):
+        step = 0
+        compensation_diam = 13
+        for cell in row:
+            if step == 0:
+                brand_name = cell.offset(column=-1).value
+                compensations_dict[cell.offset(column=-1).value] = []
+                step += 1
+            if cell.value != None:
+                compensation_sum[f'R{compensation_diam}'] = cell.value
+                compensation_diam += 1
+            else:
+                break
+
+        compensations_dict[brand_name] = compensation_sum.copy()
+        compensation_sum.clear()
+
+    wb_base_list_sheet = wb_base_list['budgets']
+
+    budgets_dict = {}
+    budgets_sum = {}
 
     for row in wb_base_list_sheet.iter_rows(min_row=2, min_col=2):
         step = 0
         for cell in row:
             if step == 0:
                 brand_name = cell.offset(column=-1).value
-                brands_dict[cell.offset(column=-1).value] = []
+                budgets_dict[cell.offset(column=-1).value] = []
                 step += 1
             if cell.value != None:
-                tire_sizes.append(cell.value)
-            else:
+                budgets_sum[f'budgeted'] = cell.value
+                budgets_sum[f'budget_balance'] = cell.offset(column=1).value
                 break
-        tire_diameter_conditions[brand_name] = tire_sizes
-        tire_sizes = []
-'''
 
+        budgets_dict[brand_name] = budgets_sum.copy()
+        budgets_sum.clear()
 
-    return managers, tire_size_width, tire_size_profile, tire_size_diameter, tire_brand, brands_dict
-
-#tire_diameter_conditions
-
-get_base_parameters()
+    return managers, tire_size_width, tire_size_profile, tire_size_diameter, tire_brand, brands_dict, compensations_dict, budgets_dict
