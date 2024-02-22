@@ -10,6 +10,7 @@ def get_base_parameters():
     tire_size_profile = []
     tire_size_diameter = []
     tire_brand = []
+    tire_season = []
     tire_diameter_conditions = []
 
     for row in wb_base_list_sheet.iter_rows(min_row=2, min_col=1, max_col=1):
@@ -36,6 +37,13 @@ def get_base_parameters():
         for cell in row:
             if cell.value != None:
                 tire_size_diameter.append(cell.value)
+            else:
+                break
+
+    for row in wb_base_list_sheet.iter_rows(min_row=2, min_col=4, max_col=4):
+        for cell in row:
+            if cell.value != None:
+                tire_season.append(cell.value)
             else:
                 break
 
@@ -110,4 +118,4 @@ def get_base_parameters():
         budgets_dict[brand_name] = budgets_sum.copy()
         budgets_sum.clear()
 
-    return managers, tire_size_width, tire_size_profile, tire_size_diameter, tire_brand, brands_dict, compensations_dict, budgets_dict
+    return managers, tire_size_width, tire_size_profile, tire_size_diameter, tire_season, tire_brand, brands_dict, compensations_dict, budgets_dict
