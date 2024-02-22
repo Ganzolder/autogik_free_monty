@@ -11,7 +11,7 @@ base_parameters = list(get_base_parameters.get_base_parameters())
 models_dict = {}
 diameter_conditions = {}
 
-for brand in range(len(base_parameters[4])):
+for brand in range(len(base_parameters[5])):
 
     brand_choiced = base_parameters[5][brand]
     models_dict[brand_choiced] = base_parameters[6][brand_choiced]
@@ -68,5 +68,5 @@ def interface():
                 sg.popup_scrolled(f'БШМ КОД - {brand_name_cropped}{rand_first}{managers_key}{rand_last}',
                                   title='Скопируй и вставь в комментарий к заказу в 1с',
                                   font=("Verdana Bold", 24), text_color='red', size=(22, 2))
-                return values
+                return values, event
 

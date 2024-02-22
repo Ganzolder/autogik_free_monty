@@ -11,14 +11,7 @@ import subprocess
 import cups
 
 
-'''customer_name = "Гондверкин Валентин Леонидович"
-tire_size = "185/65/15- Pirelli Winter Ice Zero 92T шипованные"
-customer_number = "89138216811"
-fd = '5062'
-fp = '1079959345'''
-
-
-def create_pdf(file_path, customer_name, tire_size, customer_number, fd, fp):
+def create_pdf(file_path, customer_name, tire_size, tire_brand, tire_model, customer_number, fd, fp):
 
     # Загружаем шрифт
     fonts.addMapping('DejaVu', 0, 0, 'DejaVuSans.ttf')
@@ -61,7 +54,7 @@ def create_pdf(file_path, customer_name, tire_size, customer_number, fd, fp):
 
     c.setFillColor(colors.black)
     c.drawString(220, 650, customer_name)
-    c.drawString(220, 620, tire_size)
+    c.drawString(220, 620, f"{tire_brand}"+f" {tire_model}"+f" {tire_size}")
     c.drawString(220, 590, customer_number)
     c.drawString(220, 530, fd)
     c.drawString(220, 500, fp)
@@ -70,19 +63,21 @@ def create_pdf(file_path, customer_name, tire_size, customer_number, fd, fp):
     c.drawString(50, 470, "Акт выполненных работ. Услуги по снятию, демонтажу, монтажу, балансировке и установке")
     c.drawString(50, 455, "выполнены полностью и в срок. Претензий к объему и качеству и сроку не имею")
 
-    c.drawString(300, 430, "Согласен с условиями акции*")
+    c.drawString(375, 430, "Согласен с условиями акции*")
     c.drawString(50, 350, "Подпись дилера и дата")
-    c.drawString(300, 350, "Подпись покупателя и дата")
+    c.drawString(375, 350, "Подпись покупателя и дата")
 
-    c.rect(290, 390, 200, 30)
-    c.rect(290, 310, 200, 30)
-    c.rect(45, 310, 160, 30)
+    c.setFillColor(colors.wheat)
+    c.rect(365, 390, 200, 30, fill=1)
+    c.rect(365, 310, 200, 30, fill=1)
+    c.rect(45, 310, 200, 30)
 
+    c.setFillColor(colors.black)
     c.setFont('DejaVu', 8)
     c.drawString(50, 290, "*Условия акции")
-    c.drawString(50, 270, "При покупке четырех летних шин с посадочным диаметром 15+ под торговым знаком Pirelli в Автоцентре АВТОГИК")
+    c.drawString(50, 270, f"При покупке четырех летних шин с посадочным диаметром 15+ под торговым знаком {tire_brand} в Автоцентре АВТОГИК")
     c.drawString(50, 260, "в течении всего периода проведения акции, Вы получаете 'Шиномонтаж В ПОДАРОК'. В акции участвуют")
-    c.drawString(50, 250, "все модели летних шин под товарным знаком Pirelli. К участию в акции допускаются только")
+    c.drawString(50, 250, f"все модели летних шин под товарным знаком {tire_brand}. К участию в акции допускаются только")
     c.drawString(50, 240, "физические лица, достигшие 18 лет. Покупатель может пользоваться услугой однократно на 1 комплект")
     c.drawString(50, 230, "шин приобретенных по Акции. Шинный центр, проводящий Акцию, оставляет за собой право на любой момент")
     c.drawString(50, 220, "прекратить проведение акции. Выплата денежного эквивалента, равного стоимости шиномонтажа, не производится.")
@@ -95,7 +90,7 @@ def create_pdf(file_path, customer_name, tire_size, customer_number, fd, fp):
     c.drawString(50, 150, "рекламных акций, в том числе по телефону, указанному Участником на купоне на бесплатный шиномонтаж.")
 
     # Добавляем изображение
-    # c.drawInlineImage("pngwingcom.png", 100, 500, width=100, height=100)
+    c.drawInlineImage(f"base/{tire_brand}.png", 45, 690, width=150, height=40)
 
     # Закрываем объект canvas, сохраняя изменения в PDF-файл
     c.save()
