@@ -13,24 +13,24 @@ diameter_conditions = {}
 
 for brand in range(len(base_parameters[4])):
 
-    brand_choiced = base_parameters[4][brand]
-    models_dict[brand_choiced] = base_parameters[5][brand_choiced]
+    brand_choiced = base_parameters[5][brand]
+    models_dict[brand_choiced] = base_parameters[6][brand_choiced]
 
 def interface():
 
     sg.theme('Dark black1')
     layout = [
-        [sg.Text('Дата продажи', size=(12, 1)), sg.InputText(size=(40, 2), key='date', font=('Verdana', 16))],
         [sg.Text('ФИО клиента', size=(12, 1)), sg.InputText(size=(40, 1), key='customer_name', font=('Verdana', 16))],
         [sg.Text('Тел. клиента', size=(12, 1)), sg.InputText(size=(40, 1), key='customer_number', font=('Verdana', 16))],
-        [sg.Text('Ширина', size=(12, 1)), sg.Combo(base_parameters[1], size=(9, 10), key='tire_size_width', font=('Verdana', 16)),
-        sg.Text('Проф.', size=(4, 1)), sg.Combo(base_parameters[2], size=(9, 10), key='tire_size_profile', font=('Verdana', 16)),
-        sg.Text('Диам.', size=(5, 1)), sg.Combo(base_parameters[3], size=(9, 10), key='tire_size_diameter', font=('Verdana', 16))],
-        [sg.Text('Бренд', size=(12, 1)), sg.Combo(base_parameters[4], size=(7, 10), enable_events=True, key='tire_brand', font=('Verdana', 16)),
+        [sg.Text('Ширина', size=(12, 1)), sg.Combo(base_parameters[1], size=(5, 10), key='tire_size_width', font=('Verdana', 16)),
+        sg.Text('Проф.', size=(4, 1)), sg.Combo(base_parameters[2], size=(5, 10), key='tire_size_profile', font=('Verdana', 16)),
+        sg.Text('Диам.', size=(5, 1)), sg.Combo(base_parameters[3], size=(5, 10), key='tire_size_diameter', font=('Verdana', 16)),
+        sg.Text('Сезон', size=(5, 1)), sg.Combo(base_parameters[4], size=(6, 10), key='tire_season', font=('Verdana', 16))],
+        [sg.Text('Бренд', size=(12, 1)), sg.Combo(base_parameters[5], size=(7, 10), enable_events=True, key='tire_brand', font=('Verdana', 16)),
         sg.Text('Модель', size=(6, 1)), sg.Combo([], size=(25, 10), key='tire_model', font=('Verdana', 16))],
-        [sg.Text('Модель авто', size=(12, 1)), sg.InputText(size=(40, 10), key='car_model', font=('Verdana', 16))],
-        [sg.Text('Номер авто', size=(12, 1)), sg.InputText(size=(40, 10), key='license_plate', font=('Verdana', 16))],
-        [sg.Text('Номер чека', size=(12, 1)), sg.InputText(size=(40, 10), key='check_number', font=('Verdana', 16))],
+        [sg.Text('Сумма чека', size=(12, 1)), sg.InputText(size=(40, 10), key='check_sum', font=('Verdana', 16))],
+        [sg.Text('ФД чека', size=(12, 1)), sg.InputText(size=(40, 10), key='NFD', font=('Verdana', 16))],
+        [sg.Text('ФПД чека', size=(12, 1)), sg.InputText(size=(40, 10), key='check_number', font=('Verdana', 16))],
         [sg.Text('Менеджер', size=(12, 1)), sg.Combo(base_parameters[0], size=(39, 12), key='manager', font=('Verdana', 16))],
 
         [sg.Submit('Зарегистрировать'), sg.Cancel('Отмена')]
